@@ -47,8 +47,8 @@ box on
 annotation('textbox',[0.165 0.91 0 0],'String','(a)','Color',[0,0,0],'Interpreter','Latex','HorizontalAlignment','Center','VerticalAlignment','Bottom','Edgecolor','none','Fontsize',fs);
 annotation('textbox',[0.46 0.89 0 0],'String','$\Delta\Phi_R/\Delta\Phi$','Color',colmaps{2},'Interpreter','Latex','HorizontalAlignment','Center','VerticalAlignment','Bottom','Edgecolor','none','Fontsize',fs);
 annotation('textbox',[0.65 0.89 0 0],'String','$\Delta\Phi_F/\Delta\Phi$','Color',colmaps{4},'Interpreter','Latex','HorizontalAlignment','Center','VerticalAlignment','Bottom','Edgecolor','none','Fontsize',fs);
-annotation('textbox',[0.28 0.74 0 0],'String','Reverse distribution $\rho_R(-w/\Delta\Phi)$','Color',colmaps{2},'Interpreter','Latex','HorizontalAlignment','Center','VerticalAlignment','Bottom','Edgecolor','none','Fontsize',fs);
-annotation('textbox',[0.84 0.74 0 0],'String','Forward distribution $\rho_F(w/\Delta\Phi)$','Color',colmaps{4},'Interpreter','Latex','HorizontalAlignment','Center','VerticalAlignment','Bottom','Edgecolor','none','Fontsize',fs);
+annotation('textbox',[0.28 0.74 0 0],'String','Reverse distribution $\rho_R(-w)$','Color',colmaps{2},'Interpreter','Latex','HorizontalAlignment','Center','VerticalAlignment','Bottom','Edgecolor','none','Fontsize',fs);
+annotation('textbox',[0.84 0.74 0 0],'String','Forward distribution $\rho_F(w)$','Color',colmaps{4},'Interpreter','Latex','HorizontalAlignment','Center','VerticalAlignment','Bottom','Edgecolor','none','Fontsize',fs);
 set(gca,'FontSize',fs)
 
 %% (b) Exponential Work Distribution 
