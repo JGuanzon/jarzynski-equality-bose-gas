@@ -25,18 +25,22 @@ if true
     nexttile
     hold on
     
-    % Linear fit
+    % Linear regression fit
     stdWdTv=[v1stdWFt0,v1stdWFt100,v1stdWRt100,v1stdWRt0,v2stdWFt0,v2stdWFt100,v2stdWRt100,v2stdWRt0]/Tv;
     Pre=[abs(1-v1PFt0./v1dP),abs(1-v1PFt100./v1dP),abs(1-v1PRt100./v1dP),abs(1-v1PRt0./v1dP),abs(1-v2PFt0./v2dP),abs(1-v2PFt100./v2dP),abs(1-v2PRt100./v2dP),abs(1-v2PRt0./v2dP)];
     Pree=[v1PFt0e./v1dP,v1PFt100e./v1dP,v1PRt100e./v1dP,v1PRt0e./v1dP,v2PFt0e./v2dP,v2PFt100e./v2dP,v2PRt100e./v2dP,v2PRt0e./v2dP];
     wtPree = 1./(Pree.^2);
     [p,S] = polyfit(stdWdTv,Pre,1); 
-    x = 0:12; 
+    x = 0:0.1:13; 
     [y_fit,delta] = polyval(p,x,S);
     patch([x fliplr(x)],[y_fit+2*delta fliplr(y_fit-2*delta)],'black','EdgeColor','none','FaceAlpha',0.1)
-    axis([0,12,-0.04,0.12])
+    axis([0,12,0,0.101])
     annotation('textbox',[0.51 0.1 0.5 0],'String','Fit: $\delta=0.008\beta\sigma-0.013$','Color',[0,0,0],'Interpreter','Latex','HorizontalAlignment','Center','VerticalAlignment','Bottom','Edgecolor','none','Fontsize',fs);
     set(gca,'FontSize',fs)
+    plot(x,y_fit,'k','LineWidth',1)
+    xlabel('Standard deviation of work histogram $\beta\sigma$') 
+    ylabel('Relative error of free energy $\delta$')
+    box on
     
     % Data plot
     errorbar(v1stdWFt0/Tv,abs(1-v1PFt0./v1dP),v1PFt0e./v1dP,'o','Color',colmaps{4},'LineWidth',1,'MarkerFaceColor',colmaps{4}); 
@@ -47,19 +51,23 @@ if true
     errorbar(v2stdWFt100/Tv,abs(1-v2PFt100./v2dP),v2PFt100e./v2dP,'s','Color',colmaps{4},'LineWidth',1,'MarkerFaceColor',colmaps{4}); 
     errorbar(v2stdWRt100/Tv,abs(1-v2PRt100./v2dP),v2PRt100e./v2dP,'s','Color',colmaps{2},'LineWidth',1,'MarkerFaceColor',colmaps{2}); 
     errorbar(v2stdWRt0/Tv,abs(1-v2PRt0./v2dP),v2PRt0e./v2dP,'o','Color',colmaps{2},'LineWidth',1,'MarkerFaceColor',colmaps{2}); 
-
-    plot(x,y_fit,'k--')
-    xlabel('Standard deviation of work histogram $\beta\sigma$') 
-    ylabel('Relative error of free energy $\delta$')
-    box on
     
     print(gcf,'stdvsphi.png','-dpng','-r600'); 
+    
+    % LogX Plot
+    %set(gca, 'XScale', 'log')
+    %axis([8*10^(-1),12,0,0.101])
+    %print(gcf,'stdvsphi_logx.png','-dpng','-r600'); 
+    
+    % Log-Log Plot
+    %set(gca, 'YScale', 'log', 'XScale', 'log')
+    %axis([8*10^(-1),12,10^(-4),10^(-1)])
+    %print(gcf,'stdvsphi_logxy.png','-dpng','-r600');    
 end
-
 
 %% Phi and Standard Deviation vs Lam - V1 Harmonic Trap Phi
 
-if true
+if false
     % Figure preparation
     figure('DefaultAxesFontSize', fs, 'Units', 'Centimeters', 'Position', [0, 0, 8.5, 8.5], 'PaperUnits', 'Centimeters', 'PaperPosition', [0, 0, 8.5, 8.5])
     tiledlayout(2,1, 'TileSpacing', 'none', 'Padding', 'none');
@@ -126,7 +134,7 @@ end
 
 %% Phi and Standard Deviation vs Lam - V2 Pseudo-box Trap Phi
 
-if true
+if false
     % Figure preparation
     figure('DefaultAxesFontSize', fs, 'Units', 'Centimeters', 'Position', [0, 0, 8.5, 8.5], 'PaperUnits', 'Centimeters', 'PaperPosition', [0, 0, 8.5, 8.5])
     tiledlayout(2,1, 'TileSpacing', 'none', 'Padding', 'none');
